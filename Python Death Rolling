@@ -1,0 +1,65 @@
+import random
+
+def print_intro():
+    # Print the introduction message.
+    intro_message = ("(˼●̙̂ ̟ ̟̎ ̟ ̘●̂˻) DEATH ROLLING (˼●̙̂ ̟ ̟̎ ̟ ̘●̂˻))")
+    skull_and_crossbones = '''
+                              .-.
+                             (0.0)
+                           '=.|m|.='
+                           .='`"``=.
+    '''
+    print("\n˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜")
+    print(intro_message.center(80))
+    print("˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜")
+    print(skull_and_crossbones.center(80))  
+
+def get_start_value():
+  while True:
+    try:
+      # Get starting value from Player One.
+      start_value = int(input("              Player One Enter Starting Value: "))
+      if start_value <= 1:
+        raise ValueError("Starting value must be greater than 1.")
+      return int(start_value)
+    except ValueError as e:
+      print("Please enter a valid integer greater than 1.")
+
+def death_rolling(start_range):
+    # Initialize the game with the inputted starting range.
+    current_range = start_range
+    current_player = 1
+
+    while current_range > 1:
+        # Roll a random number within the range.
+        roll = random.randint(1, current_range)
+        print(f"\n                    Player {current_player} rolled a {roll}!")
+
+        # Prompt for user input to roll again or exit.
+        user_input = input("                    Press Enter to roll again: ".center(45))
+
+        current_range = roll  # Update the current range based on the roll.
+
+        if roll == 1:
+            print(f"\n              Player {current_player} loses! Fork over your gold!")
+            if play_again():
+                return  # Start a new game if the player wants to play again.
+            else:
+                break  # Exit the loop if the player doesn't want to play again.
+
+        current_player = 3 - current_player  # Switch players for the next turn.
+
+def play_again():
+    # Ask the user if they want to play again.
+    user_input = input("\n                          Play again? ")
+    return user_input.lower() == 'yes'
+
+def main():
+    # Main game loop.
+    while True:
+        print_intro()
+        start_value = get_start_value()
+        death_rolling(start_value)
+
+if __name__ == "__main__":
+    main()
