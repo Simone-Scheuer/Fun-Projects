@@ -1,0 +1,246 @@
+import random
+
+# Awesome ASCII art
+ball_asci1 = '''
+                            _.a$$$$$a._
+                         ,$$$$$$$$$$$$$.
+                        ,$$$$$$$$$$$$$$$$$.
+                       d$$$$$$$$$$$$$$$$$$$b
+    ('\    ('\        d$$$$$$$$~'"`~$$$$$$$$b        /')    /'\')   
+  (''\.''--.'\'\      ($$$$$$$p   _   q$$$$$$$)      /' /.--''/'')  
+ (''\.''    ;  ''--: $$$$$$$$   (_)   $$$$$$$$ :--''  ;    ''/'')  
+ (''\.''     '     : $$$$$$$$   (_)   $$$$$$$$ :     '     ''/'') 
+    '\'.''          : ($$  $$$b       d$$$  $$) :           ''/'  
+      ''---_--..---: q$$  $$$$a.__.a$$$$   $$p :--.--..--_--'' 
+                      q$$   $$$$$$$$$$$  $$p
+                       `$$   $$$$$$$$   $$'
+                         `$$          $$'
+                           `~$$$$$$$$~' 
+'''
+# Answer array storage
+
+when_responses = [
+    "1776-07-04",  # Declaration of Independence
+    "1865-04-09",  # Civil War ends (Appomattox Court House)
+    "1914-06-28",  # Assassination of Archduke Franz Ferdinand
+    "1945-09-02",  # End of World War II
+    "1969-07-20",  # Apollo 11 moon landing
+    "1066-10-14",  # Battle of Hastings
+    "1789-07-14",  # Storming of the Bastille
+    "1963-08-28",  # Martin Luther King Jr.'s "I Have a Dream" speech
+    "1517-10-31",  # Martin Luther's 95 Theses
+    "1944-06-06",  # D-Day
+    "1989-11-09",  # Fall of the Berlin Wall
+    "1863-11-19",  # Gettysburg Address
+    "1941-12-07",  # Attack on Pearl Harbor
+    "1215-06-15",  # Signing of the Magna Carta
+    "1912-04-15",  # Sinking of the Titanic
+    "1947-08-15",  # Independence of India
+    "1963-11-22",  # Assassination of John F. Kennedy
+    "1994-04-27",  # End of Apartheid in South Africa
+    "1954-05-17",  # Brown v. Board of Education
+    "2001-09-11"   # September 11 attacks
+]
+where_responses = [
+    "Tickle Me Elmo, Alaska",
+    "Nowhere, Oklahoma",
+    "Lost Keys, Florida",
+    "Puzzled Point, Wisconsin",
+    "Whoopee Cushion, Arizona",
+    "Looneyville, Texas",
+    "Boring, Oregon",
+    "Candy Land, California",
+    "Jellyfish Fields, Bikini Bottom",
+    "Sillyville, New York",
+    "Fuddle-duddle, Canada",
+    "Wacky Weed, Colorado",
+    "Funky Town, Pennsylvania",
+    "Giggleswick, England",
+    "Noodle Do, Japan",
+    "Snoring Village, Wales",
+    "Dull, Scotland",
+    "Happyland, Indiana",
+    "Tequila Mockingbird, Mexico",
+    "Smell-adelphia, Pennsylvania"
+]
+who_responses = [
+  "Elon Musk",
+    "Oprah Winfrey",
+    "J.K. Rowling",
+    "Ben Shapiro",
+    "Matt Walsh",
+    "Jordan Peterson",
+    "PewDiePie",
+    "Emma Chamberlain",
+    "Billie Eilish",
+    "Joji",
+    "H3H3 Productions",
+    "Philip DeFranco",
+    "Charli D'Amelio",
+    "James Charles",
+    "MrBeast",
+    "Tom Holland",
+    "Mahatma Gandhi",
+    "Abraham Lincoln",
+    "Barack Obama"
+    "Mozart",
+    "Groucho Marx",
+    "Marie Curie",
+    "Bob Ross",
+    "Hedy Lamarr",
+    "Neil Armstrong",
+    "Frida Kahlo",
+    "David Bowie",
+    "Coco Chanel",
+    "Vincent van Gogh",
+    "Billie Holiday",
+    "Alan Turing",
+    "Audrey Hepburn",
+    "Elon Musk",
+    "J.K. Rowling",
+    "Oprah Winfrey",
+    "Stephen Hawking",
+    "Maya Angelou",
+    "Charlie Chaplin",
+    "Amelia Earhart"
+]
+how_responses = [
+    "As the stars align, so shall your path.",
+    "With a touch of magic and a sprinkle of luck.",
+    "The answer lies in the dance of the cosmic forces.",
+    "In the grand scheme of things, quite mysteriously.",
+    "By weaving the threads of fate with finesse.",
+    "Much like a wizard never reveals their secrets, some things are best left unknown.",
+    "With the precision of a well-tuned clockwork universe.",
+    "Through the whispers of the wind, the secrets unfold.",
+    "By channeling the energy of a thousand suns.",
+    "In the same way a cat always lands on its feet – with grace and a touch of wonder.",
+    "With the finesse of a ninja and the wisdom of an ancient sage.",
+    "Through the mystical art of quantum entanglement.",
+    "By harnessing the power of a shooting star.",
+    "As an alchemist transforms lead into gold, so shall your challenge find its solution.",
+    "Much like a symphony, each note carefully orchestrated to create harmony.",
+    "In the dance of fireflies on a warm summer night, the answer emerges.",
+    "Through the cosmic ballet of serendipity and chance.",
+    "With the patience of a timeless river carving its path through the mountains.",
+    "As if guided by the hands of destiny itself.",
+    "By embracing the unknown with courage and curiosity."
+]
+why_responses = [
+    "Why not? The universe works in mysterious ways.",
+    "Because the stars told me so.",
+    "Why ask why? Just go with the flow.",
+    "The real question is, why not ask a more interesting question?",
+    "Because reasons, mysterious and unknowable reasons.",
+    "Why do birds suddenly appear? Oh wait, wrong question.",
+    "Why? Because, why not!",
+    "It's a secret known only to pineapples and penguins.",
+    "Why ask why when you can ask, 'Why not ask why?'",
+    "Why? Because the answer is blowing in the wind.",
+    "Why, you ask? Well, why not ask why not?",
+    "Because quantum mechanics said so.",
+    "Why? Just blame it on the retrograde motion of the planets.",
+    "Why? Because that's how the cookie crumbles.",
+    "Because the wise old owl said so with a wink.",
+    "Why ask why when you can ponder the meaning of life instead?",
+    "Why? Because the algorithm said so, and it's never wrong.",
+    "Because asking 'why' is the first step to unlocking the mysteries of the universe.",
+    "Why, you wonder? Because laughter is the best medicine.",
+    "Why not, indeed! The universe loves a good plot twist."
+]
+what_responses = [
+    "Spaghetti junction!",
+    "Butterfly wings!",
+    "Peanut butter and jelly!",
+    "Aardvarks dancing!",
+    "Bubblegum philosophy!",
+    "Pixie dust!",
+    "Disco ball enlightenment!",
+    "Lemonade dreams!",
+    "Starlight band-aids!",
+    "Hula hoop magic!",
+    "Jigsaw puzzle illusions!",
+    "Somewhere over the rainbow!",
+    "Moonwalk paradox!",
+    "Polka dot serendipity!",
+    "Sock puppet rebellion!",
+    "Ukulele daydreams!",
+    "Marshmallow enlightenment!",
+    "Tofu-powered unicorns!",
+    "Galactic pancake syrup!",
+    "Disco inferno!",
+]
+# Random constant
+quest_num = 0
+
+# Main function for kickoff and front page
+def main():
+    print(ball_asci1)
+    print("I AM THE ALMIGHTY MAGIC 8 BALL".center(70))
+    print("YOU MAY ASK ME THREE QUESTIONS.".center(72))
+    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~".center(70))
+    print(quest())
+
+# Function for question asking.
+def quest():
+# While establishes a loop to ask multiple questions.
+    while True:
+        global quest_num
+# Ticks up ques_num to be able to report question number
+        quest_num += 1
+# Manipulates suffix based on quest num and asks for the question
+        suffix = "ST" if quest_num == 1 else "ND"
+        question = f"WHAT IS YOUR {quest_num}{suffix} QUESTION?!?".center(70)
+# QUERY uses special formatting to underline the question
+        QUERY = f"\033[4m{question}\033[0m"
+        print(QUERY.center(70))
+        print("")
+# Establishes input variable
+        input_string = input("The mere mortal asks: ")
+        print("")
+# Calls responses variable from function
+        response = process_input(input_string)
+# Prints response
+        print(f"The God ball asserts: {response}")
+        print("")
+# Exit Condition
+        if quest_num == 3:
+            print("YOU HAVE ASKED THREE QUESTIONS. I AM DONE WITH YOU!")
+            exit()
+
+
+# Function for processing input
+def process_input(input_string):
+    words_to_check = ["who", "what", "where", "when", "why","how"]
+# Check if any of the words are present in the input
+    detected_word = next((word for word in words_to_check 
+                          if word in input_string.lower()), None)
+# Returns responses based on detected word, or random based on none
+    if detected_word:
+
+        # Select a random response based on the detected word
+        if detected_word == "who":
+            return random.choice(who_responses)
+        elif detected_word == "what":
+            return random.choice(what_responses)
+        elif detected_word == "where":
+            return random.choice(where_responses)
+        elif detected_word == "when":
+            return random.choice(when_responses)
+        elif detected_word == "why":
+            return random.choice(why_responses)
+        elif detected_word == 'how':
+            return random.choice(how_responses)
+          
+    if detected_word is None:
+      return random.choice(
+        [random.choice(who_responses), 
+        random.choice(why_responses),
+        random.choice(when_responses), 
+        random.choice(where_responses),
+        random.choice(how_responses)])
+
+
+# Calls Main
+if __name__ == "__main__":
+    main()
