@@ -1,0 +1,74 @@
+# Import random module.
+import random
+
+# Defines a function called main that contains the entire program.
+def main():
+    while True:
+      
+# Creates a title and assigns the variables to be easier to center, then prints.
+        print("")
+        menu1 = "|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|"
+        menu2 = "| ⚀ ⚁ ⚂ DND DICE ROLLER ⚃ ⚄ ⚅ |"
+        menu3 = "|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|\n"
+        print(menu1.center(60))
+        print(menu2.center(60))
+        print(menu3.center(60))
+      
+# Creates a try statement to perform error detection on the main inputs.
+        try:
+            num_dice = int(input("                     How many dices? "))
+            num_sides = int(input("                     How many sides? "))
+            num_bonus = int(input("                     Additional dmg? "))
+            vun_true = input("                     Vulnerable? (y/n) ")
+            res_true = input("                     Resistance? (y/n) ")
+          
+# Raises error messages if conditions are not met.
+            if vun_true not in ['y', 'n'] or res_true not in ['y', 'n']:
+                raise ValueError("Invalid input. Please enter 'y' or 'n'.")
+
+        except ValueError as ve:
+            print(f"Error: {ve}")
+            continue  
+
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}")
+            continue  
+          
+# Performs core calculations for the program and defines key variables.
+        vun_calc = 2 if vun_true == "y" else 1
+        res_calc = 2 if res_true == "y" else 1
+        dice_rolls = roll_dice(num_dice, num_sides)
+      
+# This one returns an array of the dice rolls.
+        rolls_set = f"{', '.join(map(str, dice_rolls))}"
+      
+# This one creates a formatted string with the sum of rolls and modifiers
+        result = (
+           f"{num_dice} D{num_sides} = {sum(dice_rolls)} + {num_bonus} * {vun_calc} / "
+           f"{res_calc} = {(sum(dice_rolls) + num_bonus) * vun_calc / res_calc}" )
+      
+# Asesses if the results are above or below the half max value and alters a variable.
+        max_possible_value = num_dice * num_sides
+        half_max_value = max_possible_value / 2
+
+        if sum(dice_rolls) > half_max_value:
+          score = "Above average rolls!(˶ᵔ ᵕ ᵔ˶)"
+        elif sum(dice_rolls) < half_max_value:
+          score = "Below average rolls! ( ｡ • ᴖ • ｡)"
+        else:
+          score = "Average rolls ¯\_| ✖ 〜 ✖ |_/¯"
+          
+# Prints the results of the program and prompts a user to continue.
+        print(" ")
+        print(f"{rolls_set.center(60)}")
+        print(f"{result.center(60)}")
+        print(f"{score.center(60)}")
+        input("                       Roll again?")
+
+# Define a function that rolls random values between 1 and the number of sides
+def roll_dice(num_dice, num_sides):
+    return [random.randint(1, num_sides) for _ in range(num_dice)]
+  
+# Call the main function
+if __name__ == "__main__":
+    main()
