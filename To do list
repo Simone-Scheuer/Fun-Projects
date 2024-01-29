@@ -1,0 +1,57 @@
+def tilde_row():
+  print("~" * 40)
+
+def add_todo(todos):
+    # Add a new todo item to the list
+    item = input("Add a to-do: ")
+    todos.append(item)
+    print(f"{item} added to the list")
+  
+def view_todos(todos):
+  if todos:
+    print ("your to-do list:")
+    for index, item, in enumerate(todos, start=1):
+      print(f"{index}. {item}")
+  else:
+    print("Your to-do list is empty")
+
+def delete_todo(todos):
+  if not todos:
+      print("Your to-do list is empty!")
+      return
+
+  for index, item in enumerate(todos, start=1):
+      print(f"{index}. {item}")
+
+  try:
+      item_index = int(input("Enter the number of the item to delete: ")) - 1
+      if 0 <= item_index < len(todos):
+          removed_item = todos.pop(item_index)
+          print(f"Removed '{removed_item}' from your to-do list.")
+      else:
+          print("Sorry, there's no item with that number.")
+  except ValueError:
+      print("Please enter a number.")
+
+def main():
+    todos = []
+    while True:
+      tilde_row()
+      print("TO DO LIST APP")
+      tilde_row()
+      print("1. Add To-Do\n2. View To-Dos\n3. Delete To-Do\n4. Exit")
+      choice = input("Choose an option: ")
+
+      if choice == '1':
+          add_todo(todos)
+      elif choice == '2':
+          view_todos(todos)
+      elif choice == '3':
+          delete_todo(todos)
+      elif choice == '4':
+          break
+      else:
+          print("Invalid choice, try again.")
+
+if __name__ == "__main__":
+    main()
