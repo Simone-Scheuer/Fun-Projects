@@ -1,0 +1,26 @@
+import turtle
+
+def draw_branch(turtle, branch_length):
+    if branch_length > 5:
+      turtle.forward(branch_length)
+      turtle.right(80)
+    draw_branch(turtle, branch_length - 1)
+    turtle.right(80)
+    turtle.forward(branch_length)
+    draw_branch(turtle, branch_length - 1)
+    turtle.right(80)
+    turtle.forward(branch_length)
+    draw_branch(turtle, branch_length - 1)
+
+screen = turtle.Screen()
+my_turtle = turtle.Turtle()
+my_turtle.speed(5) 
+my_turtle.color("green")
+my_turtle.shape
+my_turtle.left(90)  # Pointing the turtle upwards
+my_turtle.up()
+my_turtle.backward(100)  # Start drawing from the bottom of the screen
+my_turtle.down()
+draw_branch(my_turtle, 200)  # Initial branch length
+screen.mainloop()
+
