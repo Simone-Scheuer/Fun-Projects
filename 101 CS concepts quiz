@@ -1,0 +1,450 @@
+import random
+ 
+cs_dict = {
+  "Explain Turing Machine":
+  "A conceptual model of computation with an infinite tape and a head for reading"
+  " and writing symbols, governed by a set of rules and states.",
+
+  "Explain CPU": 
+  "Central Processing Unit, the primary component of a computer that executes"
+  " instructions of a program, comprising control unit, ALU, and registers.",
+
+  "Explain Transistors": 
+  "Tiny semiconductor devices acting as electronic switches, forming the building"
+  " blocks of integrated circuits like CPUs.",
+
+  "Explain Bit": 
+  "The fundamental unit of information in computing and digital communications,"
+  " representing two states: 0 or 1.",
+
+  "Explain Byte": 
+  "A unit of digital information in computing, consisting of 8 bits, used to encode"
+  " a single character of text.",
+
+  "Explain Ascii Character Encoding": 
+  "American Standard Code for Information Interchange, a character encoding"
+  " standard for electronic communication, representing text in computers.",
+
+  "Explain Binary": 
+  "A base-2 numeral system using only two digits, 0 and 1, used in digital"
+  " electronics and computer systems.",
+
+  "Explain Hexadecimal": 
+  "A base-16 numeral system using sixteen distinct symbols, 0-9 and A-F, to"
+  " represent values, often for binary data representation.",
+
+  "Explain Nibble": 
+  "Half a byte or four bits, often represented by a single hexadecimal digit.",
+
+  "Explain Machine Code": 
+  "Low-level programming language, consisting of binary code, understood directly"
+  " by a computer's CPU.",
+
+  "Explain RAM": 
+  "Random Access Memory, a form of computer memory used for storing working data"
+  " and machine code currently in use.",
+
+  "Explain Memory Address": 
+  "A unique identifier for each byte in computer memory, used by a CPU to access"
+  " data during processing.",
+
+  "Explain I/O": 
+  "Input/Output, refers to the communication between an information processing"
+  " system and the external world.",
+
+  "Explain Kernel": 
+  "Core component of an operating system, managing system resources and"
+  " communication between hardware and software.",
+
+  "Explain Shell": 
+  "A user interface for accessing an operating system's services, often through a"
+  " command-line interface.",
+
+  "Explain Command Line Interface": 
+  "A text-based interface used to interact with software, where users type commands"
+  " to perform operations.",
+
+  "Explain Secure Shell Protocol": 
+  "A cryptographic network protocol for operating network services securely over"
+  " an unsecured network, commonly used in remote login.",
+
+  "Explain Mainframe": 
+  "A high-performance computer used for large-scale computing purposes requiring"
+  " greater availability and security.",
+
+  "Explain Programming Language": 
+  "A formal language comprising a set of instructions used to produce various kinds"
+  " of output, aiding in software development.",
+
+  "Explain Abstraction Principle": 
+  "A methodology in software engineering that reduces and factors out details to"
+  " simplify and manage complexity.",
+
+  "Explain Interpreted": 
+  "Refers to programming languages where code is executed directly without prior"
+  " compilation, typically line by line.",
+
+  "Explain Compiled": 
+  "Refers to programming languages that are transformed into machine code by a"
+  " compiler before execution.",
+
+  "Explain Executable": 
+  "A file that a computer can directly execute, typically produced after compiling"
+  " a program.",
+
+  "Explain Data Types": 
+  "Categories of data that tell the compiler or interpreter how the programmer"
+  " intends to use the data.",
+
+  "Explain Variable": 
+  "A storage location paired with an associated symbolic name, which contains some"
+  " known or unknown quantity or information.",
+
+  "Explain Dynamically Typed": 
+  "In these programming languages, variable types are known at runtime rather than"
+  " at compile time.",
+
+  "Explain Statically Typed": 
+  "In these programming languages, variable types are explicitly declared and"
+  " determined at compile time.",
+
+  "Explain Pointer": 
+  "A variable that stores the memory address of another variable, enabling direct"
+  " access and manipulation of memory.",
+
+  "Explain Garbage Collection": 
+  "An automatic memory management feature that reclaims memory occupied by objects"
+  " no longer in use by the program.",
+
+  "Explain Int": 
+  "A data type representing integer values, typically whole numbers without a"
+  " fractional component.",
+
+  "Explain Signed": 
+  "Numeric data types that can represent both positive and negative values.",
+
+  "Explain Floating Point": 
+  "A data type used to approximate real numbers, supporting a wide range of values"
+  " with fractional parts.",
+
+  "Explain Double": 
+  "A floating-point data type that provides double the precision of a standard"
+  " floating-point number.",
+
+  "Explain Char": 
+  "A data type that stores a single character value, usually in one byte.",
+
+  "Explain String": 
+  "A sequence of characters, often used to store text in computer programs.",
+
+  "Explain Big Endian": 
+  "A byte order where the most significant byte of a word is stored at the smallest"
+  " memory address.",
+
+  "Explain Little Endian": 
+  "A byte order where the least significant byte of a word is stored at the smallest"
+  " memory address.",
+
+  "Explain Data Structures": 
+  "Ways of organizing and storing data in a computer so that it can be accessed and"
+  " modified efficiently.",
+
+  "Explain Array": 
+  "A data structure consisting of a collection of elements, each identified by an"
+  " array index.",
+
+  "Explain Linked List": 
+  "A linear data structure where each element is a separate object, linked to the"
+  " next element by a pointer.",
+
+  "Explain Stack": 
+  "A collection of elements with two principal operations: push, which adds an"
+  " element, and pop, which removes the last added element.",
+
+  "Explain Queue": 
+  "A collection of entities that are maintained in a sequence and can be modified"
+  " by the addition of entities at one end and the removal from the other.",
+
+  "Explain Hash": 
+  "A data structure that implements an associative array, a structure that can map"
+  " keys to values.",
+
+  "Explain Tree": 
+  "A hierarchical data structure consisting of nodes, with a single root node and"
+  " subnodes representing a tree-like structure.",
+
+  "Explain Graph": 
+  "A collection of nodes or vertices connected by edges, representing"
+  " interconnected objects.",
+
+  "Explain Edge": 
+  "A connection between two nodes in a graph, representing a relationship or link"
+  " between them.",
+
+  "Explain Algorithm": 
+  "A finite sequence of well-defined, computer-implementable instructions, typically"
+  " to solve a class of problems or perform a computation.",
+
+  "Explain Function": 
+  "A block of code designed to perform a particular task, defined once and"
+  " reusable in different parts of a program.",
+
+  "Explain Return": 
+  "A statement used in a function to exit it and return a value to the caller if"
+  " required.",
+
+  "Explain Arguments": 
+  "Values passed to a function when it is invoked, to be used within the function"
+  " for processing or operations.",
+
+  "Explain Operators": 
+  "Special symbols in programming that carry out arithmetic, logical, or other"
+  " types of operations on operands.",
+
+  "Explain Boolean": 
+  "A data type with two possible values: true or false, often used in conditional"
+  " statements and loops.",
+
+  "Explain Expression": 
+  "A combination of variables, values, operators, and function calls that are"
+  " evaluated to produce another value.",
+
+  "Explain Statement": 
+  "An instruction in a program that performs some action but doesn't necessarily"
+  " return a value.",
+
+  "Explain Conditional Logic": 
+  "A feature of programming where the execution of certain code depends on the"
+  " evaluation of a boolean expression.",
+
+  "Explain While Loop": 
+  "A control flow statement that executes a block of code repeatedly as long as a"
+  " specified condition remains true.",
+
+  "Explain Iterable": 
+  "An object in programming that can be iterated over, allowing you to traverse"
+  " through all its elements.",
+
+  "Explain For loop": 
+  "A control flow statement for iterating over a sequence (like a list or tuple),"
+  " executing a block of code multiple times.",
+
+  "Explain Void": 
+  "A function that doesn't return any value. It performs an operation without"
+  " producing a result.",
+
+  "Explain Recursion": 
+  "A programming technique where a function calls itself in its definition, useful"
+  " for solving problems that can be broken down into similar subproblems.",
+
+  "Explain Call Stack": 
+  "A stack data structure that stores information about the active subroutines or"
+  " functions of a computer program.",
+
+  "Explain Stack Overflow (E)": 
+  "An error that occurs when too much memory is used on the call stack, typically"
+  " due to excessive or infinite recursion.",
+
+  "Explain Base Condition": 
+  "In recursion, a condition under which a recursive function returns without"
+  " making a further call to itself.",
+
+  "Explain Big-O-Notation": 
+  "A mathematical notation used to classify algorithms according to how their"
+  " run time or space requirements grow as the input size grows.",
+
+  "Explain Time Complexity": 
+  "A measure of the amount of time an algorithm takes to complete as a function of"
+  " the length of the input.",
+
+  "Explain Space Complexity": 
+  "A measure of the amount of memory space required by an algorithm, as a function"
+  " of the input size.",
+
+  "Explain Brute Force": 
+  "A straightforward approach to solving a problem by trying all possible"
+  " combinations until finding a solution.",
+
+  "Explain Divide and Conquer": 
+  "An algorithm design paradigm that solves a problem by breaking it into smaller"
+  " subproblems, solving each recursively.",
+
+  "Explain Dynamic Programming (Nice)": 
+  "A method for solving complex problems by breaking them into simpler subproblems,"
+  " storing the results of these subproblems to avoid redundant work.",
+
+  "Explain Memoization": 
+  "An optimization technique used to speed up computer programs by storing the"
+  " results of expensive function calls.",
+
+  "Explain Greedy": 
+  "An algorithmic paradigm that builds up a solution piece by piece, choosing the"
+  " next piece with the most immediate benefit.",
+
+  "Explain Dijkstra's Shortest Path": 
+  "An algorithm for finding the shortest paths between nodes in a graph, widely"
+  " used in network routing protocols.",
+
+  "Explain Backtracking": 
+  "An algorithmic technique for solving problems recursively by trying to build a"
+  " solution incrementally and backtracking when necessary.",
+
+  "Explain Declarative": 
+  "A programming paradigm that expresses the logic of a computation without"
+  " describing its control flow.",
+
+  "Explain Functional Languages": 
+  "Programming languages that treat computation as the evaluation of mathematical"
+  " functions and avoid changing-state and mutable data.",
+
+  "Explain Imperative": 
+  "A programming paradigm where programs are constructed from statements that"
+  " change a program state.",
+
+  "Explain Procedural Languages": 
+  "Programming languages based on the procedural programming paradigm, focusing on"
+  " procedure calls and modular structure.",
+
+  "Explain Multiparadigm Languages": 
+  "Languages that support multiple programming paradigms, allowing programmers to"
+  " choose the most suitable one for a task.",
+
+  "Explain Object-oriented": 
+  "A programming paradigm based on the concept of 'objects', which are data"
+  " structures containing data and methods.",
+
+  "Explain Class": 
+  "In object-oriented programming, a blueprint for creating objects, providing"
+  " initial values for state and implementations of behavior.",
+
+  "Explain Property": 
+  "Attributes or data stored within an object or class in object-oriented"
+  " programming.",
+
+  "Explain Method": 
+  "Functions defined inside the body of a class in object-oriented programming,"
+  " used to define the behaviors of an object.",
+
+  "Explain Inheritance": 
+  "An object-oriented concept where a new class is created from an existing class,"
+  " inheriting attributes and behaviors.",
+
+  "Explain Design Patterns": 
+  "Standard solutions to common problems in software design, providing templates"
+  " for how to solve issues in a way that's repeatable and efficient.",
+
+  "Explain Instantiate": 
+  "The process of creating an object in programming from a class, resulting in a"
+  " specific instance of that class.",
+
+  "Explain Heap": 
+  "A memory pool where objects are stored when dynamically allocated, unlike the"
+  " stack, it's not automatically managed.",
+
+  "Explain Reference": 
+  "An object that refers to another object, allowing multiple accesses to a single"
+  " instance without duplicating it.",
+
+  "Explain Threads": 
+  "Smallest units of processing that can be scheduled by an operating system,"
+  " enabling parallel execution of tasks.",
+
+  "Explain Parallelism": 
+  "The technique of conducting multiple computations simultaneously, particularly"
+  " on processors with multiple cores.",
+
+  "Explain Concurrency": 
+  "The ability of different parts or units of a program to be executed out-of-order"
+  " or in partial order, without affecting the final outcome.",
+
+  "Explain Bare Metal": 
+  "Computing environments where the software runs directly on the physical hardware"
+  " without an underlying operating system.",
+
+  "Explain Virtual Machine": 
+  "A software emulation of a physical computer, enabling the running of an"
+  " operating system and applications in a contained environment.",
+
+  "Explain Ip-address": 
+  "Internet Protocol address, a unique string of numbers separated by periods,"
+  " identifying each computer using the Internet Protocol to communicate.",
+
+  "Explain URL": 
+  "Uniform Resource Locator, a reference to a web resource specifying its location"
+  " on a computer network and a mechanism for retrieving it.",
+
+  "Explain DNS": 
+  "Domain Name System, a hierarchical decentralized naming system for computers,"
+  " services, or other resources connected to the Internet or a private network.",
+
+  "Explain Transmission Control Protocol": 
+  "A core protocol of the Internet protocol suite, ensuring reliable, ordered, and"
+  " error-checked delivery of a stream of data between applications.",
+
+  "Explain Packets": 
+  "Units of data sent across a network, formatted to include the destination"
+  " address, source address, and other information necessary for transmission.",
+
+  "Explain Secure Sockets Layer": 
+  "A standard security technology for establishing an encrypted link between a"
+  " server and a client, typically a web server and a browser.",
+
+  "Explain HTTP": 
+  "Hypertext Transfer Protocol, an application layer protocol for distributed,"
+  " collaborative, hypermedia information systems.",
+
+  "Explain Application Programming Interface": 
+  "API, a set of routines, protocols, and tools for building software applications,"
+  " specifying how software components should interact.",
+
+  "Explain PRINTERS (Even I don't know how they work)": 
+  "Devices that convert digital documents into physical printouts, using various"
+  " technologies like inkjet or laser printing."
+}
+
+
+def main():
+  while True:
+    tilde_row()
+    print("101 COMP SCI CONCEPTS")
+    tilde_row()
+    print("\n1. WHOLE QUIZ\n2. RANDOM QUESTION\n3. EXIT\n")
+    choice = input("Choose an option: ")
+    free_space()
+    if choice == '1' :
+      flashcard_quests1()
+    elif choice == '2':
+      flashcard_quest_rand(cs_dict)
+    elif choice == '3':
+      break
+    else:
+      print("Invalid choice, try again.")
+
+def flashcard_quests1():
+  for i, (question, answer) in enumerate(cs_dict.items(), start= 1):
+    print(f"\033[4m{i}/100. {question}\033[0m")
+    input("Press enter for answer: ")
+    print(f"{answer}\n")
+
+def flashcard_quest_rand(cs_dict):
+  question, answer = random.choice(list(cs_dict.items()))
+  print(f"\033[4m{question}\033[0m")
+  input("Press enter for answer: ")
+  print(answer)
+
+def tilde_row():
+  print("~" * 21)
+
+def free_space():
+  print("")
+
+def print_underlined(text):
+  underline = '\033[4m'
+  reset = '\033[0m'
+  underlined_text = f"{underline}{text}{reset}"
+  print(underlined_text)
+
+
+  
+if __name__ == "__main__":
+  main()
