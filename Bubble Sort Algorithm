@@ -1,0 +1,18 @@
+import random
+
+def bubble_sort(any_array):
+  array_length = len(any_array)
+  
+  for i in range(array_length):
+    
+    for j in range(0, array_length-i-1):
+
+      if any_array[j] > any_array[j+1]:
+          any_array[j], any_array[j+1] = any_array[j+1], any_array[j]
+
+random_numbers = [random.randint(1, 100) for _ in range(100)]
+bubble_sort(random_numbers)
+print("Sorted array is:")
+for i in range(len(random_numbers)):
+    print("%d" %random_numbers[i], end=" ")
+
