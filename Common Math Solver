@@ -1,0 +1,93 @@
+CALC_GCD = 1
+CALC_LCM = 2
+CALC_AVG = 3
+CALC_PERC = 4
+CALC_SQRT = 5
+
+def main():
+    while True:
+        print_menu()
+        choice = get_menu_choice()
+
+        if choice == CALC_GCD:
+            x = int(input('Enter first positive integer: '))
+            y = int(input('Enter second positive integer: '))
+            gcd_result = find_gcd(x, y)
+            print(f'The GCD is: {gcd_result}')
+
+        elif choice == CALC_LCM:
+            x = int(input('Enter first positive integer: '))
+            y = int(input('Enter second positive integer: '))
+            lcm_result = find_lcm(x, y)
+            print(f'The LCM is: {lcm_result}')
+
+        elif choice == CALC_AVG:
+            avg_result = find_avg()
+            if avg_result is not None:
+                print(f'The average is: {avg_result}')
+
+        elif choice == CALC_PERC:
+            numerator = float(input('Enter numerator: '))
+            denominator = float(input('Enter denominator: '))
+            percentage = find_perc(numerator, denominator)
+            print(f'The percent is {percentage}')
+
+        elif choice == CALC_SQRT:
+            x = int(input('Enter a positive integer: '))
+            sqrt_result = find_sqrt(x)
+            print(f'The square root of {x} is: {sqrt_result}')
+
+
+def print_menu():
+    print("Menu:".center(42))
+    print(f"{CALC_GCD}. GREATEST COMMON FACTOR")
+    print(f"{CALC_LCM}. LEAST COMMON MULTIPLE")
+    print(f"{CALC_AVG}. AVERAGE")
+    print(f"{CALC_PERC}.PERCENTAGE")
+    print(f"{CALC_SQRT}.SQUARE ROOT")
+
+
+def get_menu_choice():
+    choice = int(input("Enter your menu choice: "))
+    return choice
+
+
+def find_gcd(x, y):
+    while y:
+        x, y = y, x % y
+    return x
+
+
+def find_lcm(x, y):
+    return x * y // find_gcd(x, y)
+
+
+def find_avg():
+    count = 0
+    total = 0
+    num = float(input('Enter integer, enter 0 to calculate: '))
+    while num != 0:
+        total += num
+        count += 1
+        num = float(input('Enter integer, enter 0 to calculate: '))
+    if count == 0:
+        print("Cannot calculate average, no numbers entered.")
+        return None
+    avg = total / count
+    return avg
+
+
+def find_perc(numerator, denominator):
+  if denominator == 0:
+      return "Undefined"
+  decimal = numerator / denominator
+  percentage = decimal * 100
+  return percentage
+
+
+def find_sqrt(x):
+    return x ** 0.5
+
+
+if __name__ == '__main__':
+    main()
