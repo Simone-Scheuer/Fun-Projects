@@ -1,0 +1,28 @@
+import re
+time_pattern = re.compile(r'(\d{1,2})(?::(\d{2}))?\s*(am|pm|AM|PM)?$')
+
+def main():
+  while True:
+    time_string = input("Input Time to Convert: ")
+    print(f"Minutes after Midnight: {time_to_minutes(time_string)}")
+   
+def time_to_minutes(time_string):
+  match = time_pattern.match(time_string)
+  if match:
+
+    hour, minute, meridiem = match.groups()
+
+    hour = int(hour)
+    minute = int(minute) if minute else 0
+
+    if meridiem in ("pm", "PM") and hour < 12:
+      hour += 12
+    elif meridiem in ("am", 'AM' and hour == 12):
+      hour = 0
+
+    return hour * 60 + minute
+  else:
+
+    return None
+  
+main()
