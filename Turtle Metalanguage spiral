@@ -1,0 +1,115 @@
+import turtle
+import random 
+
+class TurtleGraphics:
+    def __init__(self):
+        self.screen = turtle.Screen()  # Explicitly create the Turtle Screen
+        self.screen.colormode(255)
+        self.screen.title("Turtle Graphics Drawing")  # Set the title of the window
+        self.screen.bgcolor("black")  # Set the background color of the window
+        self.turtle = turtle.Turtle()
+        self.turtle.speed(0)  # Set the speed of the turtle
+        self.pen = 0  # Default pen (this example doesn' change pen attributes)
+        self.turtle.penup()  # Start with the pen up
+
+    def execute_command(self, command):
+        parts = command.split()
+        cmd = parts[0]
+        arg = int(parts[1]) if len(parts) > 1 else None
+
+        command_map = {
+            "P": self.select_pen,
+            "D": self.pen_down,
+            "U": self.pen_up,
+            "W": self.move_west,
+            "N": self.move_north,
+            "E": self.move_east,
+            "S": self.move_south,
+            "A": self.change_angle,
+            "G": self.go_distance,
+            "SP": self.spiralx,
+            "RP": self.randpat
+        }
+
+        if cmd in command_map:
+            if arg is not None:
+                command_map[cmd](arg)
+            else:
+                command_map[cmd]()
+        else:
+            print(f"Unknown command: {cmd}")
+
+    def select_pen(self, pen):
+        self.pen = pen
+        print(f"Selected pen {pen}")
+
+    def pen_down(self):
+        self.turtle.pendown()
+        print("Pen down")
+
+    def pen_up(self):
+        self.turtle.penup()
+        print("Pen up")
+
+    def randpat(self):
+        for _ in range(1000):
+            angle = random.randint(0, 360)
+            distance = random.randint(0, 50)
+            self.turtle.setheading(angle)
+            self.turtle.forward(distance)
+
+    def spiralx(self):
+        x = 400
+        angle = 360
+        distance = 1
+        red = 254
+        green = 254
+        blue = 254
+        self.turtle.color(red, green, blue)
+        while x != 1:
+            red = random.randint(50,255)
+            green = random.randint(50,255)
+            blue = random.randint(50,255)
+            self.turtle.color(red, green, blue)
+            self.turtle.setheading(angle)
+            self.turtle.forward(distance)
+            angle -= 61
+            distance += 1
+            x -= 1
+            
+        
+
+    def move_west(self, distance):
+        self.turtle.setheading(180)
+        self.turtle.forward(distance)
+
+    def move_north(self, distance):
+        self.turtle.setheading(90)
+        self.turtle.forward(distance)
+
+    def move_east(self, distance):
+        self.turtle.setheading(0)
+        self.turtle.forward(distance)
+
+    def move_south(self, distance):
+        self.turtle.setheading(270)
+        self.turtle.forward(distance)
+
+    def change_angle(self, angle):
+        self.turtle.setheading(angle)
+
+    def go_distance(self,distance):
+        self.turtle.forward(distance)
+
+commands = [
+    "P 2",  
+    "D",
+    "SP",
+    "U"
+]
+
+turtle_graphics = TurtleGraphics()
+for command in commands:
+    turtle_graphics.execute_command(command)
+
+turtle.done()  # Keep the window open until manually closed
